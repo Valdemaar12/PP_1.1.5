@@ -19,7 +19,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private final Connection connection;
 
     public UserDaoJDBCImpl() {
-        connection = new Util().getConnection();//todo инициализация переменной - через конструктор
+        connection = new Util().getConnection();
     }
 
     public void createUsersTable() {
