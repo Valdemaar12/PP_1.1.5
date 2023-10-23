@@ -15,7 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private final String DB_GET_ALL = "SELECT * FROM users";
     private final String DB_CLEAN_TABLE = "DELETE FROM users";
 
-    private final Connection connection = new Util().getConnection();//todo ..нет, не убедили. Проговаривали, так не делается.
+    private Connection connection = new Util().getConnection();
 
     public UserDaoJDBCImpl() {
 
@@ -24,7 +24,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void createUsersTable() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DB_CREATE_TABLE)) {
             preparedStatement.executeUpdate();
-            System.out.println("...........");//todo ..
+            System.out.println("Новая база данных создана.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -33,7 +33,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DB_DROP_TABLE)) {
             preparedStatement.executeUpdate();
-            System.out.println("...........");//todo ..
+            System.out.println("База данных удалена.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -55,7 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DB_REMOVE_USER)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-            System.out.println("...........");//todo ..
+            System.out.println("User с id - " + id + " удалён из базы данных.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +73,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setAge(resultSet.getByte("age"));
                 resultList.add(user);
             }
-            System.out.println("...........");//todo ..
+            System.out.println("Запрос на получение всех User из базы данных - успешно выполнен.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -83,7 +83,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DB_CLEAN_TABLE)) {
             preparedStatement.executeUpdate();
-            System.out.println("...........");//todo ..
+            System.out.println("База данных очищена.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
