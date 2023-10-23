@@ -14,10 +14,10 @@ public class UserDaoJDBCImpl implements UserDao {
     private final String DB_DROP_TABLE = "DROP TABLE IF EXISTS users";
     private final String DB_GET_ALL = "SELECT * FROM users";
     private final String DB_CLEAN_TABLE = "DELETE FROM users";
-    private final Connection connection;
+    private final Connection connection = new Util().getConnection();
 
     public UserDaoJDBCImpl() {
-        connection = new Util().getConnection();
+
     }
 
     public void createUsersTable() {
