@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
+
     private final String DB_INSERT_USER = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
     private final String DB_REMOVE_USER = "DELETE FROM users WHERE id=?";
     private final String DB_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS users (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(45) NOT NULL, lastName VARCHAR(45) NOT NULL, age TINYINT)";
@@ -15,10 +16,10 @@ public class UserDaoJDBCImpl implements UserDao {
     private final String DB_GET_ALL = "SELECT * FROM users";
     private final String DB_CLEAN_TABLE = "DELETE FROM users";
 
-    private Connection connection = new Util().getConnection();
+    private final Connection connection;
 
     public UserDaoJDBCImpl() {
-
+        connection = new Util().getConnection();//todo инициализация переменной - через конструктор
     }
 
     public void createUsersTable() {
